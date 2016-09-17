@@ -10,12 +10,20 @@ Trips = new function(){
               id: 1,
               name: "blaa",
               started: "2016-09-01T16:06:04.000",
-              rating: 1 //0=green, 1=yellow, 2=red
+              rating_overall: 1, //0=green, 1=yellow, 2=red
+              rating_rpm: 0, //0=green, 1=yellow, 2=red
+              rating_acc: 1, //0=green, 1=yellow, 2=red
+              rating_break: 2, //0=green, 1=yellow, 2=red
+              rating_accSide: 1 //0=green, 1=yellow, 2=red
           }, {
               id: 2,
               name: "meintitel2",
               started: "2016-09-01T16:26:10.000",
-              rating: 0 //0=green, 1=yellow, 2=red
+              rating_overall: 0, //0=green, 1=yellow, 2=red
+              rating_rpm: 1, //0=green, 1=yellow, 2=red
+              rating_acc: 1, //0=green, 1=yellow, 2=red
+              rating_break: 1, //0=green, 1=yellow, 2=red
+              rating_accSide: 1 //0=green, 1=yellow, 2=red
           },
       ]
         return journeys
@@ -24,11 +32,11 @@ Trips = new function(){
     these.renderTable = function(table){
         var journeys = these.getJourneys();
         journeys.forEach(function(element){
-            if(element.rating === 0){
+            if(element.rating_overall === 0){
                 var circle = "<div class='circleGreen'/>";
-            } else if(element.rating === 1){
+            } else if(element.rating_overall === 1){
                 var circle = "<div class='circleYellow'/>";
-            }else if(element.rating === 2){
+            }else if(element.rating_overall === 2){
                 var circle = "<div class='circleRed'/>";
             }
 
