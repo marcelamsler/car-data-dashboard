@@ -1,11 +1,10 @@
 class TripController < ActionController::Base
 
   def index
-    car_id = get_car_id_for_user params[:user_id]
+    car_id = get_car_id_for_user params[:user_id].to_i
 
-    @trip = Trip.find_by(car_id: car_id)
-
-    render json: @trip
+    @trips = Trip.where(car_id: car_id)
+    render json: @trips
   end
 
   def show
