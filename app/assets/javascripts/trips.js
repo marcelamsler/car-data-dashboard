@@ -22,8 +22,6 @@ Trips = new function(){
             });
         };
 
-        getAllTripsData("1",returnFunction);
-        }
         new requests().getAllTripsData("1",returnFunction);
     };
 
