@@ -13,5 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
 //= require admin-template
+//= require chart
+//= require chartPlot
 //= require_tree .
