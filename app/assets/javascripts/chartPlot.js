@@ -4,7 +4,7 @@
 
 
 ChartPlot = new function(){
-    these = this
+    var these = this
 
     these.plot = function(canvas, value, title, description){
         var yourValue = value;

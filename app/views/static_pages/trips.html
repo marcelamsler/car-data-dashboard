@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Journeys</title>
+    <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+    <script src="/assets/trips.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Your journeys</div>
+                <div class="panel-body">
+                </div>
+                <!-- Table -->
+                <table class="table" id="journeyTable">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Started</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $( document ).ready(function() {
+        var table = $("#journeyTable")
+        Trips.renderTable(table)
+    });
+</script>
+</body>
+</html>
