@@ -23,6 +23,13 @@ class DataImportController < ActionController::Base
           if last_recorded_at == recorded_at
             add_attribute(current_log_entry, row)
           else
+            puts item
+            gyro_data = CSV.read('./data/csv/behave/' + item[0, -4] + '_BEHAVE.csv')
+            rows_for_before_recorded_at = gyro_data.select {|data_row| data_row[:recorded_at] == last_recorded_at}
+            rows_for_before_recorded_at.each do |data_row|
+              add_attribute(current_log_entry, data_row)
+            end
+
             current_log_entry.save!
             last_recorded_at = recorded_at
             current_log_entry = initializeLogEntry(recorded_at, trip, row)
