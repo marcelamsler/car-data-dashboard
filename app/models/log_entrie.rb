@@ -1,2 +1,0 @@
-class LogEntrie < ApplicationRecord
-end
