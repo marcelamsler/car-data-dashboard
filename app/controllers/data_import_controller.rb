@@ -15,7 +15,8 @@ class DataImportController < ActionController::Base
         trip.save!
       end
 
-      currentTripBreak = LogEntry.where("trip_id = ? and \"BEHAVE_ACC_X_PEAK\" IS NOT NULL AND \"BEHAVE_ACC_X_PEAK\" >= 0 ", trip.id).pluck(:"BEHAVE_ACC_X_PEAK")
+      currentTripBreak = LogEntry.where("trip_id = ? and \"BEHAVE_ACC_X_PEAK\" IS NOT NULL AND \"BEHAVE_ACC_X_PEAK\" <= 0 ", trip.id).pluck(:"BEHAVE_ACC_X_PEAK")
+      currentTripBreak.map{|n| n.abs()}
       print currentTripBreak
       if currentTripBreak.length > 0
         trip.break_mean = currentTripBreak.mean
@@ -24,7 +25,8 @@ class DataImportController < ActionController::Base
         trip.save!
       end
 
-      currentTripAccel = LogEntry.where("trip_id = ? and \"BEHAVE_ACC_X_PEAK\" IS NOT NULL AND \"BEHAVE_ACC_X_PEAK\" <= 0 ", trip.id).pluck(:"BEHAVE_ACC_X_PEAK")
+      currentTripAccel = LogEntry.where("trip_id = ? and \"BEHAVE_ACC_X_PEAK\" IS NOT NULL AND \"BEHAVE_ACC_X_PEAK\" >= 0 ", trip.id).pluck(:"BEHAVE_ACC_X_PEAK")
+      currentTripAccel.map{|n| n.abs()}
       print currentTripAccel
       if currentTripAccel.length > 0
         trip.accel_mean = currentTripAccel.mean
