@@ -27,8 +27,8 @@
                             <p>Engine State</p>
                             <div class="">
                                 <div class="progress progress_sm" style="width: 76%;">
-                                    <div class="progress-bar bg-green" role="progressbar"
-                                         data-transitiongoal="80"></div>
+                                    <div id="engine-progressbar" class="progress-bar bg-green" role="progressbar"
+                                         data-transitiongoal="80" ></div>
                                 </div>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                             <p>Chassis State</p>
                             <div class="">
                                 <div class="progress progress_sm" style="width: 76%;">
-                                    <div class="progress-bar bg-green" role="progressbar"
+                                    <div id="chassis-progressbar" class="progress-bar bg-green" role="progressbar"
                                          data-transitiongoal="60"></div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                             <p>Brake State</p>
                             <div class="">
                                 <div class="progress progress_sm" style="width: 76%;">
-                                    <div class="progress-bar bg-green" role="progressbar"
+                                    <div id="brake-progressbar" class="progress-bar bg-green" role="progressbar"
                                          data-transitiongoal="40"></div>
                                 </div>
                             </div>
@@ -92,8 +92,7 @@
     var context = document.getElementById('overview-canvas').getContext('2d');
     context.canvas.width = 1000;
     context.canvas.height = 450;
-    var yourValue = 40;
-    ChartPlot.plot(context, yourValue, "", "Your Vehicle-Status compared to others");
+    ChartPlot.plot(context, "", "Your Vehicle-Status compared to others");
 
     $(document).ready(function () {
         var table = $("#journeyTable");
