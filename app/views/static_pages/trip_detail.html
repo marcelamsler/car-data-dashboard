@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Journey Detail</title>
+    <script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+    <script src="/assets/trips.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
+    <script src="/assets/chartPlot.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10" style="height: 40%">
+            <h2 id="title"></h2>
+            <p id="timestamp"></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10" style="height: 40%">
+            <canvas id="rpmCanvas"></canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10" style="max-height: 40%">
+            <canvas id="accCanvas"></canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <canvas id="breakCanvas" style="max-height: 40%"></canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            <canvas id="accSideCanvas" style="max-height: 40%"></canvas>
+        </div>
+    </div>
+</div>
+<script>
+    $( document ).ready(function() {
+        var tripId = Trips.getParameterByName('id');
+        var title = $("#title");
+        var timestamp = $("#timestamp");
+        var rpmCanvas = $("#rpmCanvas");
+        var accCanvas = $("#accCanvas");
+        var breakCanvas = $("#breakCanvas");
+        var accSideCanvas = $("#accSideCanvas");
+
+        Trips.renderDetail(tripId, rpmCanvas, accCanvas, breakCanvas, accSideCanvas)
+
+    });
+</script>
+</body>
+</html>
