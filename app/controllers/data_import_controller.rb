@@ -16,7 +16,7 @@ class DataImportController < ActionController::Base
       end
 
       currentTripBreak = LogEntry.where("trip_id = ? and \"BEHAVE_ACC_X_PEAK\" IS NOT NULL AND \"BEHAVE_ACC_X_PEAK\" <= 0 ", trip.id).pluck(:"BEHAVE_ACC_X_PEAK")
-      currentTripBreak.map{|n| n.abs()}
+      currentTripBreak = currentTripBreak.map{|n| n.abs()}
       print currentTripBreak
       if currentTripBreak.length > 0
         trip.break_mean = currentTripBreak.mean
@@ -26,7 +26,7 @@ class DataImportController < ActionController::Base
       end
 
       currentTripAccel = LogEntry.where("trip_id = ? and \"BEHAVE_ACC_X_PEAK\" IS NOT NULL AND \"BEHAVE_ACC_X_PEAK\" >= 0 ", trip.id).pluck(:"BEHAVE_ACC_X_PEAK")
-      currentTripAccel.map{|n| n.abs()}
+      currentTripAccel = currentTripAccel.map{|n| n.abs()}
       print currentTripAccel
       if currentTripAccel.length > 0
         trip.accel_mean = currentTripAccel.mean
@@ -36,7 +36,7 @@ class DataImportController < ActionController::Base
       end
 
       currentTripLat = LogEntry.where("trip_id = ? and \"BEHAVE_ACC_Y_PEAK\" IS NOT NULL", trip.id).pluck(:"BEHAVE_ACC_Y_PEAK")
-      currentTripLat.map{|n| n.abs()}
+      currentTripLat = currentTripLat.map{|n| n.abs()}
       print currentTripLat
       if currentTripAccel.length > 0
         trip.lat_mean = currentTripLat.mean
@@ -46,6 +46,27 @@ class DataImportController < ActionController::Base
       end
 
     end
+
+    totalTripRpm = LogEntry.where("\"MDI_OBD_RPM\" IS NOT NULL AND \"MDI_OBD_RPM\" > 0 ").pluck(:"MDI_OBD_RPM")
+    puts "TotalRPM Median: #{totalTripRpm.mean}"
+    puts "TotalRPM Max:"
+    puts "TotalRPM Variance: #{Math.sqrt(totalTripRpm.variance)}"
+
+    totalBreak = LogEntry.where(" \"BEHAVE_ACC_X_PEAK\" IS NOT NULL AND \"BEHAVE_ACC_X_PEAK\" <= 0 ").pluck(:"BEHAVE_ACC_X_PEAK")
+    totalBreak = totalBreak.map{|i| i.abs()}
+    puts "TotalBreak Median: #{totalBreak.mean}"
+    puts "TotalBreak Variance: #{Math.sqrt(totalBreak.variance)}"
+
+    totalAccel = LogEntry.where(" \"BEHAVE_ACC_X_PEAK\" IS NOT NULL AND \"BEHAVE_ACC_X_PEAK\" >= 0 ").pluck(:"BEHAVE_ACC_X_PEAK")
+    totalAccel = totalAccel.map{|n| n.abs()}
+    puts "TotalAccel Median: #{totalAccel.mean}"
+    puts "TotalAccel Variance: #{Math.sqrt(totalAccel.variance)}"
+
+    totalLat = LogEntry.where(" \"BEHAVE_ACC_Y_PEAK\" IS NOT NULL").pluck(:"BEHAVE_ACC_Y_PEAK")
+    totalLat.map{|n| n.abs()}
+    puts "TotalLat Median: #{totalLat.mean}"
+    puts "TotalLat Variance: #{Math.sqrt(totalLat.variance)}"
+
     render :nothing => true, :status => 200, :content_type => 'text/html', notice: 'Import Finished'
   end
 

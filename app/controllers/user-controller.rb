@@ -3,7 +3,28 @@ class UserController < ActionController::Base
   def show
     car_id = get_car_id_for_user params[:id]
 
-    @data = []
+    @data = [
+
+        {
+            "RPMGreenTop": 1484,
+            "RPMOrangeTop": 1991,
+            "RPMRedTop": 2498,
+
+            "BreakGreenTop": 138,
+            "BreakOrangeTop": 261,
+            "BreakRedTop": 399,
+
+            "AccelGreenTop": 151,
+            "AccelOrangeTop": 252,
+            "AccelRedTop": 353,
+
+            "LatGreenTop": 22,
+            "LatOrangeTop": 301,
+            "LatRedTop": 582
+
+        }
+
+    ]
     ##Return data for overview and dashboard
 
     render json: @data
