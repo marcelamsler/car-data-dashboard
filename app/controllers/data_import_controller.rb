@@ -6,19 +6,48 @@ class DataImportController < ActionController::Base
   def update
     trips = Trip.all
     trips.each do |trip|
-      currentTrip = LogEntry.where("trip_id = ? and \"MDI_OBD_RPM\" IS NOT NULL AND \"MDI_OBD_RPM\" > 0 ", trip.id).pluck(:"MDI_OBD_RPM")
-      print currentTrip
-      if currentTrip.length > 0
-        trip.rpm_mean = currentTrip.mean
-        trip.rpm_var = currentTrip.variance
-        trip.rpm_med = currentTrip.median
+      currentTripRpm = LogEntry.where("trip_id = ? and \"MDI_OBD_RPM\" IS NOT NULL AND \"MDI_OBD_RPM\" > 0 ", trip.id).pluck(:"MDI_OBD_RPM")
+      print currentTripRpm
+      if currentTripRpm.length > 0
+        trip.rpm_mean = currentTripRpm.mean
+        trip.rpm_var = Math.sqrt(currentTripRpm.variance)
+        trip.rpm_med = currentTripRpm.median
         trip.save!
       end
-    end
 
+      currentTripBreak = LogEntry.where("trip_id = ? and \"BEHAVE_ACC_X_PEAK\" IS NOT NULL AND \"BEHAVE_ACC_X_PEAK\" >= 0 ", trip.id).pluck(:"BEHAVE_ACC_X_PEAK")
+      print currentTripBreak
+      if currentTripBreak.length > 0
+        trip.break_mean = currentTripBreak.mean
+        trip.break_var =  Math.sqrt(currentTripBreak.variance)
+        trip.break_med = currentTripBreak.median
+        trip.save!
+      end
+
+      currentTripAccel = LogEntry.where("trip_id = ? and \"BEHAVE_ACC_X_PEAK\" IS NOT NULL AND \"BEHAVE_ACC_X_PEAK\" <= 0 ", trip.id).pluck(:"BEHAVE_ACC_X_PEAK")
+      print currentTripAccel
+      if currentTripAccel.length > 0
+        trip.accel_mean = currentTripAccel.mean
+        trip.accel_var =  Math.sqrt(currentTripAccel.variance)
+        trip.accel_med = currentTripAccel.median
+        trip.save!
+      end
+
+      currentTripLat = LogEntry.where("trip_id = ? and \"BEHAVE_ACC_Y_PEAK\" IS NOT NULL", trip.id).pluck(:"BEHAVE_ACC_Y_PEAK")
+      currentTripLat.map{|n| n.abs()}
+      print currentTripLat
+      if currentTripAccel.length > 0
+        trip.lat_mean = currentTripLat.mean
+        trip.lat_var =  Math.sqrt(currentTripLat.variance)
+        trip.lat_med = currentTripLat.median
+        trip.save!
+      end
+
+    end
     render :nothing => true, :status => 200, :content_type => 'text/html', notice: 'Import Finished'
   end
-()
+
+
   def import
     Dir.foreach('./data/csv/') do |item|
       next if item == '.' or item == '..'
