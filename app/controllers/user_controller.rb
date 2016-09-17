@@ -1,9 +1,9 @@
 class UserController < ActionController::Base
 
   def show
-    car_id = get_car_id_for_user params[:id]
+    car_id = get_car_id_for_user params[:id].to_i
 
-    currentCar = Car.where("car_id = ?", car_id).first
+    currentCar = Car.where(car_id: car_id).first
 
     @data = [
 
@@ -28,7 +28,6 @@ class UserController < ActionController::Base
         "BrakeCar": currentCar.brake_avg,
         "AccelCar": currentCar.accel_avg,
         "LatCar": currentCar.lat_avg
-
       }
 
     ]
