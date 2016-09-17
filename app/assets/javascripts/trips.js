@@ -1,7 +1,3 @@
-/**
- * Created by severin on 17.09.16.
- */
-
 Trips = new function(){
    var these = this;
 
@@ -21,7 +17,7 @@ Trips = new function(){
                 table.append(row)
             });
         }
-        getAllTripsData("1",returnFunction);
+        new requests().getAllTripsData("1",returnFunction);
     };
 
     these.getParameterByName = function(name) {
@@ -39,7 +35,7 @@ Trips = new function(){
             ChartPlot.plot(accSideCanvas, result.accSide.mean, "Side acceleration", " ");
         };
 
-        getTripData("1",tripId,returnFunction);
+        new requests().getTripData("1",tripId,returnFunction);
     };
 
 };
