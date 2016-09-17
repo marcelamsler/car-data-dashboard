@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>CarDataDashboard</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>CarDataDashboard</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
+<body>
+<%= render "partials/sidenav" %>
+<%= render "partials/topnav" %>
 
-    <%= yield %>
-  </body>
+<%= yield %>
+
+<%= render "partials/footer" %>
+<%= javascript_include_tag 'footermanifest', 'data-turbolinks-track' => true %>
+
+</body>
+</body>
 </html>
