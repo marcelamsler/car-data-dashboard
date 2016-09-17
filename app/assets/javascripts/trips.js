@@ -18,9 +18,12 @@ Trips = new function(){
 
                 var row = "<tr><td>" + element.id + "</td><td><a href='trip_detail.html?id=" + element.id + "'>" +
                     element.name + "</a></td><td>" + element.started + "</td><td>" + circle + "</td></tr>";
+
+														console.log(element);
                 table.append(row)
             });
-        }
+        };
+
         getAllTripsData("1",returnFunction);
     };
 
