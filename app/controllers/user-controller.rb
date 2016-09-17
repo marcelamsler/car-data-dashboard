@@ -3,7 +3,7 @@ class UserController < ActionController::Base
   def show
     car_id = get_car_id_for_user params[:id]
 
-
+    currentCar= Car.where("car_id = ?", car_id).first;
 
     @data = [
 
@@ -24,10 +24,10 @@ class UserController < ActionController::Base
             "LatOrangeTop": 301,
             "LatRedTop": 582,
 
-            "RPMCar": 3,
-            "BrakeCar": 5,
-            "AccelCar": 7,
-            "LatCar": 9
+            "RPMCar": currentCar.rpm_avg,
+            "BrakeCar": currentCar.brake_avg,
+            "AccelCar": currentCar.accel_avg,
+            "LatCar": currentCar.lat_avg
 
         }
 
