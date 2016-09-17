@@ -1,8 +1,24 @@
 require 'csv'
-
+require 'descriptive_statistics'
 
 class DataImportController < ActionController::Base
 
+  def update
+    trips = Trip.all
+    trips.each do |trip|
+      currentTrip = LogEntry.where("trip_id = ? and \"MDI_OBD_RPM\" IS NOT NULL AND \"MDI_OBD_RPM\" > 0 ", trip.id).pluck(:"MDI_OBD_RPM")
+      print currentTrip
+      if currentTrip.length > 0
+        trip.rpm_mean = currentTrip.mean
+        trip.rpm_var = currentTrip.variance
+        trip.rpm_med = currentTrip.median
+        trip.save!
+      end
+    end
+
+    render :nothing => true, :status => 200, :content_type => 'text/html', notice: 'Import Finished'
+  end
+()
   def import
     Dir.foreach('./data/csv/') do |item|
       next if item == '.' or item == '..'
