@@ -31,10 +31,12 @@ ChartPlot = new function () {
 						console.log(engineState);
 
 						var overAllState = (50 * engineState + 30 * chassisState + 20 * brakeState) / 100;
+                        console.log(overAllState);
 
 						var greenTop = (50 * (100 / data.RPMRedTop * data.RPMGreenTop) + 30 * (100 / data.BreakRedTop * data.BreakGreenTop) + 20 * (100 / data.LatRedTop * data.LatGreenTop)) / 100;
-						var orangeTop = (50 * (100 / data.RPMRedTop * data.RPMOrangeTop) + 30 * (100 / data.BreakRedTop * data.BreakOrangeTop)+ 20 * (100 / data.LatRedTop * data.LatOrangeTop)) / 100;
+                        var orangeTop = (50 * (100 / data.RPMRedTop * data.RPMOrangeTop) + 30 * (100 / data.BreakRedTop * data.BreakOrangeTop)+ 20 * (100 / data.LatRedTop * data.LatOrangeTop)) / 100;
 						var redTop = (50 * (100 / data.RPMRedTop * data.RPMRedTop) + 30 * (100 / data.BreakRedTop * data.BreakRedTop) + 20 * (100 / data.LatRedTop * data.LatRedTop)) / 100;
+
 
 						var barChartData = {
 								labels: ["", description, ""],
@@ -57,11 +59,11 @@ ChartPlot = new function () {
 								}, {
 										label: 'Average',
 										backgroundColor: "rgba(255, 206, 86, 1)",
-										data: [0, orangeTop, 0]
+										data: [0, orangeTop - greenTop, 0]
 								}, {
 										label: 'Agressiv',
 										backgroundColor: "rgba(255, 99, 132, 1)",
-										data: [0, redTop, 0]
+										data: [0, redTop - orangeTop, 0]
 								}]
 						};
 
