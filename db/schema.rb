@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160917112104) do
+ActiveRecord::Schema.define(version: 20160917173853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,15 @@ ActiveRecord::Schema.define(version: 20160917112104) do
     t.decimal  "rpm_mean"
     t.decimal  "rpm_var"
     t.decimal  "rpm_med"
+    t.decimal  "break_mean"
+    t.decimal  "break_var"
+    t.decimal  "break_med"
+    t.decimal  "accel_mean"
+    t.decimal  "accel_var"
+    t.decimal  "accel_med"
+    t.decimal  "lat_mean"
+    t.decimal  "lat_var"
+    t.decimal  "lat_med"
   end
 
 end
