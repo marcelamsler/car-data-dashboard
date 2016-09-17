@@ -9,11 +9,13 @@ Trips = new function(){
           {
               id: 1,
               name: "blaa",
-              started: "2016-09-01T16:06:04.000"
+              started: "2016-09-01T16:06:04.000",
+              rating: 1 //0=green, 1=yellow, 2=red
           }, {
               id: 2,
               name: "meintitel2",
-              started: "2016-09-01T16:26:10.000"
+              started: "2016-09-01T16:26:10.000",
+              rating: 0 //0=green, 1=yellow, 2=red
           },
       ]
         return journeys
@@ -22,7 +24,17 @@ Trips = new function(){
     these.renderTable = function(table){
         var journeys = these.getJourneys();
         journeys.forEach(function(element){
-            var row = "<tr><td>" + element.id + "</td><td><a href='trip_detail.html?id=" + element.id + "'>" + element.name + "</a></td><td>" + element.started + "</td>"
+            if(element.rating === 0){
+                var circle = "<div class='circleGreen'/>";
+            } else if(element.rating === 1){
+                var circle = "<div class='circleYellow'/>";
+            }else if(element.rating === 2){
+                var circle = "<div class='circleRed'/>";
+            }
+
+
+            var row = "<tr><td>" + element.id + "</td><td><a href='trip_detail.html?id=" + element.id + "'>" +
+                element.name + "</a></td><td>" + element.started + "</td><td>" + circle + "</td></tr>";
            table.append(row)
         });
     };
@@ -36,6 +48,7 @@ Trips = new function(){
                 id: tripId,
                 name: "blaa",
                 started: "2016-09-01T16:06:04.000",
+                ended: "2016-09-01T16:07:35.220",
 
                 rpm: {
                     mean: 20,
@@ -60,8 +73,10 @@ Trips = new function(){
             };
         return trip_detail;
     };
-    these.renderDetail = function (tripId, rpmCanvas, accCanvas, breakCanvas, accSideCanvas) {
+    these.renderDetail = function (tripId, title, timestamp, rpmCanvas, accCanvas, breakCanvas, accSideCanvas) {
         var details = these.getTripDetails(tripId);
+        title.text(details.name);
+        timestamp.text(details.started + " - " + details.ended);
         ChartPlot.plot(rpmCanvas, details.rpm.mean, "RPM", " ");
         ChartPlot.plot(accCanvas, details.acc.mean, "Acceleration", " ");
         ChartPlot.plot(breakCanvas, details.break.mean, "Break", " ");
