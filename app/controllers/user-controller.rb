@@ -3,6 +3,8 @@ class UserController < ActionController::Base
   def show
     car_id = get_car_id_for_user params[:id]
 
+
+
     @data = [
 
         {
@@ -20,7 +22,12 @@ class UserController < ActionController::Base
 
             "LatGreenTop": 22,
             "LatOrangeTop": 301,
-            "LatRedTop": 582
+            "LatRedTop": 582,
+
+            "RPMCar": 3,
+            "BrakeCar": 5,
+            "AccelCar": 7,
+            "LatCar": 9
 
         }
 

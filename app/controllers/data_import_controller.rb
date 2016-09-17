@@ -47,6 +47,31 @@ class DataImportController < ActionController::Base
 
     end
 
+    Car.destroy_all
+    trips.select("car_id").where("car_id IS NOT NULL").group("car_id").each do |item|
+      item.car_id
+      list_of_ids = trips.where("car_id = ? ", item.car_id).pluck(:"id")
+
+      currentCarRpm = LogEntry.where("trip_id IN (?) and \"MDI_OBD_RPM\" IS NOT NULL AND \"MDI_OBD_RPM\" > 0 ",  list_of_ids).pluck(:"MDI_OBD_RPM")
+      currentCarRpm = currentCarRpm.map{|n| n.abs()}
+      carRpm = currentCarRpm.mean
+
+      currentCarBrake = LogEntry.where("trip_id IN (?) and \"BEHAVE_ACC_X_PEAK\" IS NOT NULL AND \"BEHAVE_ACC_X_PEAK\" <= 0 ", list_of_ids).pluck(:"BEHAVE_ACC_X_PEAK")
+      currentCarBrake = currentCarBrake.map{|n| n.abs()}
+      carBrake =  currentCarBrake.mean
+
+      currentCarAccel = LogEntry.where("trip_id IN (?) and \"BEHAVE_ACC_X_PEAK\" IS NOT NULL AND \"BEHAVE_ACC_X_PEAK\" >= 0 ", list_of_ids).pluck(:"BEHAVE_ACC_X_PEAK")
+      currentCarAccel = currentCarAccel.map{|n| n.abs()}
+      carAccel = currentCarAccel.mean
+
+      currentCarLat = LogEntry.where("trip_id IN (?) and \"BEHAVE_ACC_Y_PEAK\" IS NOT NULL", list_of_ids).pluck(:"BEHAVE_ACC_Y_PEAK")
+      currentCarLat = currentCarLat.map{|n| n.abs()}
+      carLat = currentCarLat.mean
+
+      Car.create ([{car_id: item.car_id, rpm_avg: carRpm, brake_avg: carBrake, accel_avg: carAccel, lat_avg: carLat}])
+
+    end
+
     totalTripRpm = LogEntry.where("\"MDI_OBD_RPM\" IS NOT NULL AND \"MDI_OBD_RPM\" > 0 ").pluck(:"MDI_OBD_RPM")
     puts "TotalRPM Median: #{totalTripRpm.mean}"
     puts "TotalRPM Max:"
