@@ -3,8 +3,6 @@ class UserController < ActionController::Base
   def show
     car_id = get_car_id_for_user params[:id]
 
-
-
     @data = []
     ##Return data for overview and dashboard
 
