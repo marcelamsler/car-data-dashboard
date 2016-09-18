@@ -18,15 +18,16 @@ ChartPlot = new function () {
 				new requests().getDashboardData("2", function (response) {
 						data = response[0];
 						var userEngineValue = data.RPMCar;
-						engineState = 100 / data.RPMRedTop * userEngineValue;
+					//	engineState = 100 / data.RPMRedTop * userEngineValue;
+						engineState = 35;
 						var userBreakValue = data.BrakeCar;
 						brakeState =  100 / data.BreakRedTop * userBreakValue;
 						var userLatValue = data.LatCar;
 						chassisState = 100 / data.LatRedTop * userLatValue;
 
-						$('#engine-progressbar').css('width', engineState);
-						$('#brake-progressbar').css('width', brakeState);
-						$('#chassis-progressbar').css('width', chassisState);
+						$('#engine-progressbar').css('width', engineState + '%');
+						$('#brake-progressbar').css('width', brakeState + '%');
+						$('#chassis-progressbar').css('width', chassisState + '%');
 
 						console.log(engineState);
 
