@@ -7,8 +7,20 @@
 
     <title>CERTIFICATE OF EXCELLENCE </title>
   <style>
+    body {
+      font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    }
+
     .amag {
       width: 150px;
+    }
+
+    .chart {
+      width: 500px;
+    }
+
+    .stat {
+      text-align: center;
     }
 
     .logo {
@@ -58,6 +70,9 @@
 </table>
 <p>
   The following table shows the usage scores:
+</p>
+<p class="stat">
+<%= wicked_pdf_image_tag 'img.jpg' ,:class => "chart"%>
 </p>
 
 <canvas id="skills"></canvas>
