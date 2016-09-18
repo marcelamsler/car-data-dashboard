@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20160917221903) do
   end
 
   create_table "log_entries", force: :cascade do |t|
-    t.integer  "trip_id"
     t.float    "LATITUDE"
     t.float    "LONGITUDE"
     t.datetime "RECEIVED_AT"
@@ -185,7 +184,6 @@ ActiveRecord::Schema.define(version: 20160917221903) do
     t.string   "MDI_CC_TIME_FOR_CHANGE_OIL"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["RECORDED_AT", "trip_id"], name: "index_log_entries_on_RECORDED_AT_and_trip_id", unique: true, using: :btree
   end
 
   create_table "trips", force: :cascade do |t|

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+  <%= wicked_pdf_javascript_include_tag "chart.js" -%>
+  <%= wicked_pdf_javascript_include_tag "chartPlot.js" -%>
+
+    <title>CERTIFICATE OF EXCELLENCE </title>
+  <style>
+    .amag {
+      width: 150px;
+    }
+
+    .logo {
+      text-align: center;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    table {
+      margin-left:auto;
+      margin-right:auto;
+      margin-top: 60px;
+      margin-bottom: 60px;
+    }
+  </style>
+</head>
+<body>
+
+<p class="logo">
+  <%= wicked_pdf_image_tag 'logo-amag.jpg' ,:class => "amag"%>
+</p>
+
+<h1> CAR-CERTIFICATE OF EXCELLENCE </h1>
+<p id="test">
+  AMAG Switzerland approves the excellent condition of the following car.
+</p>
+
+<table style="width:60%">
+  <tr>
+    <td>brand</td>
+    <td>Porsche</td>
+  </tr>
+  <tr>
+    <td>model</td>
+    <td>911</td>
+  </tr>
+  <tr>
+    <td>km</td>
+    <td>130'000</td>
+  </tr>
+  <tr>
+    <td>year</td>
+    <td>2004</td>
+  </tr>
+</table>
+<p>
+  The following table shows the usage scores:
+</p>
+
+<canvas id="skills"></canvas>
+<script>
+    var context = document.getElementById('skills').getContext('2d');
+    var yourValue = 40;
+    ChartPlot.plot(context, yourValue, "RPM Analysis", "Your trip compared to others");
+
+    document.getElementById('test').nodeValue = "test3";
+
+</script>
+
+</body>
+</html>

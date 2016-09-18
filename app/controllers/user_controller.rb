@@ -36,6 +36,10 @@ class UserController < ActionController::Base
     render json: @data
   end
 
+  def certificate
+    render pdf: "certificate"   # Excluding ".pdf" extension.
+  end
+
   def get_car_id_for_user (user_id)
     if user_id == 1
       87

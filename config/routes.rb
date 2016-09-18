@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   resources :user do
     resources :trip
+    member do
+      get :certificate
+    end
   end
 
   get '/import-data', to: 'data_import#import'
