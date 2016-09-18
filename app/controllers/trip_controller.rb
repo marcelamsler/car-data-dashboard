@@ -44,9 +44,9 @@ class TripController < ActionController::Base
   end
 
   def get_color_for_engine (rpm_mean)
-    if rpm_mean < 1484
+    if rpm_mean < 1384
       'green'
-    elsif rpm_mean < 1991
+    elsif rpm_mean < 1891
       'orange'
     else
       'red'
@@ -64,7 +64,7 @@ class TripController < ActionController::Base
   end
 
   def get_color_for_chassis (lat_mean)
-    if lat_mean < 22
+    if lat_mean < 80
       'green'
     elsif lat_mean < 301
       'orange'
