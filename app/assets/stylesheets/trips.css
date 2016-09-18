@@ -5,7 +5,7 @@
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
     border-radius: 25px;
-    background-color: red;
+    background-color: rgb(231, 76, 60) ;
 }
 
 .circle-orange {
@@ -14,7 +14,7 @@
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
     border-radius: 25px;
-    background-color: yellow;
+    background-color: rgba(255, 206, 86, 1);
 }
 
 .circle-green {
@@ -23,7 +23,7 @@
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
     border-radius: 25px;
-    background-color: greenyellow;
+    background-color: rgb(26, 187, 156);
 }
 
 .big {

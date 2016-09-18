@@ -54,7 +54,7 @@ ChartPlot = new function () {
 										data: [overAllState, overAllState, overAllState]
 								}, {
 										label: 'Gentle',
-										backgroundColor: "rgba(161, 255, 66, 1)",
+										backgroundColor: "rgb(26, 187, 156)",
 										data: [0, greenTop , 0]
 								}, {
 										label: 'Average',
@@ -62,7 +62,7 @@ ChartPlot = new function () {
 										data: [0, orangeTop - greenTop, 0]
 								}, {
 										label: 'Agressiv',
-										backgroundColor: "rgba(255, 99, 132, 1)",
+										backgroundColor: "rgba(231, 76, 60, 1)",
 										data: [0, redTop - orangeTop, 0]
 								}]
 						};
