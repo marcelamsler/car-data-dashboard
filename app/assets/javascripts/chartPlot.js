@@ -15,7 +15,7 @@ ChartPlot = new function () {
 
 				var data = null;
 
-				new requests().getDashboardData("1", function (response) {
+				new requests().getDashboardData("2", function (response) {
 						data = response[0];
 						var userEngineValue = data.RPMCar;
 						engineState = 100 / data.RPMRedTop * userEngineValue;
@@ -39,17 +39,17 @@ ChartPlot = new function () {
 
 
 						var barChartData = {
-								labels: ["", description, ""],
+								labels: ["", " ", ""],
 								datasets: [{
-										label: "Current Car State",
+										label: "Your Car Condtion",
 										//new option, type will default to bar as that what is used to create the scale
 										type: "line",
 										fillColor: "rgba(240, 0, 184, 1)",//"rgba(220,220,220,0.2)",
-										strokeColor: "rgba(240, 0, 184, 1)",// "rgba(220,220,220,1)",
-										pointColor: "rgba(240, 0, 184, 1)",// "rgba(220,220,220,1)",
+										strokeColor: "rgba(100, 100, 184, 1)",// "rgba(220,220,220,1)",
+										pointColor: "rgba(240, 100, 184, 1)",// "rgba(220,220,220,1)",
 										pointStrokeColor: "rgba(240, 0, 184, 1)",//"rgba(80, 168, 215, 0.69)",//"#fff",
 										pointHighlightFill: "rgba(240, 0, 184, 1)",//"#fff",
-										pointHighlightStroke: "rgba(240, 0, 184, 1)",//"rgba(220,220,220,1)",
+										pointHighlightStroke: "rgba(240, 100, 184, 0.2)",//"rgba(220,220,220,1)",
 										backgroundColor: "rgba(54, 162, 235, 0.2)",
 										data: [overAllState, overAllState, overAllState]
 								}, {

@@ -9,6 +9,7 @@ class TripController < ActionController::Base
       new_trip[:chassis_cond] = get_color_for_chassis(trip.lat_mean)
       new_trip[:brake_cond] = get_color_for_brake(trip.break_mean)
       new_trip[:overall_cond] = get_color_for_overall(trip.rpm_mean, trip.lat_mean, trip.break_mean)
+      new_trip[:recorded_at] = trip.log_entries.first.RECORDED_AT
       new_trip
     end
 

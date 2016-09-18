@@ -1,5 +1,5 @@
 
-.circleRed {
+.circle-red {
     width: 20px;
     height: 20px;
     -webkit-border-radius: 25px;
@@ -8,7 +8,7 @@
     background-color: red;
 }
 
-.circleYellow {
+.circle-orange {
     width: 20px;
     height: 20px;
     -webkit-border-radius: 25px;
@@ -17,11 +17,19 @@
     background-color: yellow;
 }
 
-.circleGreen {
+.circle-green {
     width: 20px;
     height: 20px;
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
     border-radius: 25px;
     background-color: greenyellow;
+}
+
+.big {
+    width: 30px;
+    height: 30px;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
 }

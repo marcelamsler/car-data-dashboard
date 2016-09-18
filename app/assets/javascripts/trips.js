@@ -3,6 +3,9 @@ Trips = new function () {
 
 		these.renderTable = function (table) {
 				var returnFunction = function (result) {
+						result = result.sort(function (a, b) {
+								return new Date(b.recorded_at) - new Date(a.recorded_at);
+						});
 						result.forEach(function (element) {
 								if (element.rating_overall === 0) {
 										var circle = "<div class='circleGreen'/>";
@@ -12,8 +15,17 @@ Trips = new function () {
 										var circle = "<div class='circleRed'/>";
 								}
 
-								var row = "<tr><td>" + element.id + "</td><td>" +
-												element.name + "</a></td><td>" + element.started + "</td><td>" + circle + "</td></tr>";
+								var date = new Date(element.recorded_at);
+
+								var day = date.getDate();
+								var monthIndex = date.getMonth();
+								var year = date.getFullYear();
+
+
+								var formattedDate = day + '.' + (monthIndex + 1) + '.' + year;
+
+								var row = "<tr><td>" + formattedDate + "</td><td>" +
+												getHtml(element.engine_cond) + "</a></td><td>" + getHtml(element.brake_cond, false) + "</td><td>" + getHtml(element.chassis_cond) + "</td><td>" + getHtml(element.overall_cond, true) + "</td></tr>";
 
 								element.created_at + "</a></td><td>" + circle + "</td></tr>";
 								table.append(row);
@@ -38,5 +50,13 @@ Trips = new function () {
 
 				new requests().getTripData("1", tripId, returnFunction);
 		};
+
+		function getHtml(cond, big) {
+				if (big) {
+						return "<div class='circle-" + cond + " big '/>"
+				} else {
+						return "<div class='circle-" + cond + "'/>"
+				}
+		}
 
 };
