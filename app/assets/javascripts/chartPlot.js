@@ -15,7 +15,7 @@ ChartPlot = new function () {
 
 				var data = null;
 
-				new requests().getDashboardData("2", function (response) {
+				new requests().getDashboardData("1", function (response) {
 						data = response[0];
 						var userEngineValue = data.RPMCar;
 						engineState = 100 / data.RPMRedTop * userEngineValue;
@@ -33,7 +33,7 @@ ChartPlot = new function () {
 						var overAllState = (50 * engineState + 30 * chassisState + 20 * brakeState) / 100;
                         console.log(overAllState);
 
-						var greenTop = (50 * (100 / data.RPMRedTop * data.RPMGreenTop) + 30 * (100 / data.BreakRedTop * data.BreakGreenTop) + 20 * (100 / data.LatRedTop * data.LatGreenTop)) / 100;
+						var greenTop = (50 * (100 / data.RPMRedTop * (data.RPMGreenTop-1000)) + 30 * (100 / data.BreakRedTop * (data.BreakGreenTop)) + 20 * (100 / data.LatRedTop * (data.LatGreenTop))) / 100;
                         var orangeTop = (50 * (100 / data.RPMRedTop * data.RPMOrangeTop) + 30 * (100 / data.BreakRedTop * data.BreakOrangeTop)+ 20 * (100 / data.LatRedTop * data.LatOrangeTop)) / 100;
 						var redTop = (50 * (100 / data.RPMRedTop * data.RPMRedTop) + 30 * (100 / data.BreakRedTop * data.BreakRedTop) + 20 * (100 / data.LatRedTop * data.LatRedTop)) / 100;
 

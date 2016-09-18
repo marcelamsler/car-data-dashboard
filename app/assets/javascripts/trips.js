@@ -4,21 +4,19 @@ Trips = new function () {
 		these.renderTable = function (table) {
 				var returnFunction = function (result) {
 						result.forEach(function (element) {
-								if (element.rating) {
-										if (element.rating_overall === 0) {
-												var circle = "<div class='circleGreen'/>";
-										} else if (element.rating_overall === 1) {
-												var circle = "<div class='circleYellow'/>";
-										} else if (element.rating_overall === 2) {
-												var circle = "<div class='circleRed'/>";
-										}
-
-										var row = "<tr><td>" + element.id + "</td><td><a href='trip_detail.html?id=" + element.id + "'>" +
-														element.name + "</a></td><td>" + element.started + "</td><td>" + circle + "</td></tr>";
-
-										element.created_at + "</a></td><td>" + circle + "</td></tr>";
-										table.append(row);
+								if (element.rating_overall === 0) {
+										var circle = "<div class='circleGreen'/>";
+								} else if (element.rating_overall === 1) {
+										var circle = "<div class='circleYellow'/>";
+								} else if (element.rating_overall === 2) {
+										var circle = "<div class='circleRed'/>";
 								}
+
+								var row = "<tr><td>" + element.id + "</td><td>" +
+												element.name + "</a></td><td>" + element.started + "</td><td>" + circle + "</td></tr>";
+
+								element.created_at + "</a></td><td>" + circle + "</td></tr>";
+								table.append(row);
 						});
 				};
 
