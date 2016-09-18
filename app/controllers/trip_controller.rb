@@ -17,7 +17,15 @@ class TripController < ActionController::Base
   end
 
   def get_color_for_overall(rpm, lat, brake)
-    'green'
+     mix_value = 50*rpm / 2498  + 30*lat / 582 + 20*brake / 353
+     ##puts mix_value
+     if mix_value < 45
+       'green'
+     elsif mix_value < 50
+       'orange'
+     else
+       'red'
+     end
   end
 
   def show
